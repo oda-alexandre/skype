@@ -9,6 +9,9 @@ locales \
 wget \
 apt-utils \
 ca-certificates \
+apt-transport-https \
+gnupg \
+dirmngr \
 libc++1 \
 libasound2 \
 libatomic1 \
