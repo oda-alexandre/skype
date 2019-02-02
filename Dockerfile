@@ -25,8 +25,8 @@ RUN apt-get update && apt-get install -y \
 skypeforlinux
 
 # AJOUT INCLUDES
-COPY ./includes/snort.sh  /usr/local/bin/snort.sh
-RUN chmod +x /root/snort/snort.sh
+COPY ./includes/skype.sh  /usr/local/bin/skype.sh
+RUN chmod +x /root/skype/skype.sh
 
 # NETTOYAGE
 RUN apt-get --purge autoremove -y \
