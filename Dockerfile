@@ -6,27 +6,11 @@ MAINTAINER https://oda-alexandre.github.io
 RUN apt-get update && apt-get install --no-install-recommends -y \
 sudo \
 locales \
-wget \
-apt-utils \
 ca-certificates \
 apt-transport-https \
 gnupg \
 dirmngr \
-libc++1 \
-libasound2 \
-libatomic1 \
-libgconf-2-4 \
-libnotify4 \
-libnspr4 \
-libnss3 \
-libxss1 \
-libxtst6 \
-libappindicator1 \
-alsa-utils \
-libasound2-plugins \
-pulseaudio \
-pulseaudio-utils \
-libcanberra-gtk-module
+wget
 
 # SELECTION DE LA LANGUE FRANCAISE
 ENV LANG fr_FR.UTF-8
@@ -38,11 +22,11 @@ wget -q -O - https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add
 
 # INSTALLATION DE L'APPLICATION
 RUN apt-get update && apt-get install -y \
-skypeforlinux
+skypeforlinux=8.32.0.44
 
 # AJOUT INCLUDES
-COPY ./includes/skype.sh  /usr/local/bin/skype.sh
-RUN chmod +x /usr/local/bin/skype.sh
+COPY ./includes/skype  /usr/local/bin/skype
+RUN chmod +x /usr/local/bin/skype
 
 # NETTOYAGE
 RUN apt-get --purge autoremove -y \
@@ -64,5 +48,4 @@ USER skype
 WORKDIR /home/skype
 
 # COMMANDE AU DEMARRAGE DU CONTENEUR
-ENTRYPOINT /bin/bash
 CMD skype
