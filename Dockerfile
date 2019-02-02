@@ -18,15 +18,24 @@ RUN echo fr_FR.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
 
 # AJOUT DU REPOS ET DE LA CLEF GPG
 RUN echo 'deb [arch=amd64] https://repo.skype.com/deb stable main' >> /etc/apt/sources.list.d/skype-stable.list && \
-wget -q -O - https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add
+set -ex; \
+export GNUPGHOME="$(mktemp -d)"; \
+for key in D4040146BE3972509FD57FC71F3045A5DF7587C3; do \
+gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+done; \
+gpg --batch --export $GPG_KEYS > /etc/apt/trusted.gpg.d/skype.gpg; \
+rm -rf "$GNUPGHOME"; \
+apt-key list; \
+apt-mark auto '.*' > /dev/null; \
+[ -z "$savedAptMark" ] || apt-mark manual $savedAptMark
 
 # INSTALLATION DE L'APPLICATION
 RUN apt-get update && apt-get install -y \
-skypeforlinux=8.32.0.44
+skypeforlinux
 
 # AJOUT INCLUDES
-COPY ./includes/skype  /usr/local/bin/skype
-RUN chmod +x /usr/local/bin/skype
+COPY ./includes/skype.sh  /usr/local/bin/skype.sh
+RUN chmod +x /usr/local/bin/skype.sh
 
 # NETTOYAGE
 RUN apt-get --purge autoremove -y \
