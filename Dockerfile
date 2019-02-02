@@ -6,11 +6,24 @@ MAINTAINER https://oda-alexandre.github.io
 RUN apt-get update && apt-get install --no-install-recommends -y \
 sudo \
 locales \
+wget \
+apt-utils \
 ca-certificates \
-apt-transport-https \
-gnupg \
-dirmngr \
-wget
+libc++1 \
+libasound2 \
+libatomic1 \
+libgconf-2-4 \
+libnotify4 \
+libnspr4 \
+libnss3 \
+libxss1 \
+libxtst6 \
+libappindicator1 \
+alsa-utils \
+libasound2-plugins \
+pulseaudio \
+pulseaudio-utils \
+libcanberra-gtk-module
 
 # SELECTION DE LA LANGUE FRANCAISE
 ENV LANG fr_FR.UTF-8
