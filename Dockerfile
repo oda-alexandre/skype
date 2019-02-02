@@ -48,4 +48,5 @@ USER skype
 WORKDIR /home/skype
 
 # COMMANDE AU DEMARRAGE DU CONTENEUR
+ENTRYPOINT /bin/bash
 CMD skype
