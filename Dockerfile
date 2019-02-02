@@ -24,10 +24,9 @@ wget -q -O - https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add
 RUN apt-get update && apt-get install -y \
 skypeforlinux
 
-RUN echo "#!/bin/bash" >> /usr/local/bin/skypeforlinux && \
-echo "set -e" >> /usr/local/bin/skypeforlinux && \
-echo "SKYPE_PATH='/usr/share/skypeforlinux/skypeforlinux'" >> /usr/local/bin/skypeforlinux && \
-echo 'exec "$SKYPE_PATH" --executed-from="$PWD" --pid="$$" "$@"' >> /usr/local/bin/skypeforlinux
+# AJOUT INCLUDES
+COPY ./includes/snort.sh  /root/snort/snort.sh
+RUN chmod +x /root/snort/snort.sh
 
 # NETTOYAGE
 RUN apt-get --purge autoremove -y \
@@ -49,4 +48,4 @@ USER skype
 WORKDIR /home/skype
 
 # COMMANDE AU DEMARRAGE DU CONTENEUR
-CMD skypeforlinux
+CMD skype
