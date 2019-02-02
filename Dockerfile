@@ -26,7 +26,7 @@ skypeforlinux
 
 # AJOUT INCLUDES
 COPY ./includes/skype.sh  /usr/local/bin/skype.sh
-RUN chmod +x /root/skype/skype.sh
+RUN chmod +x /usr/local/bin/skype.sh
 
 # NETTOYAGE
 RUN apt-get --purge autoremove -y \
