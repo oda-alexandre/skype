@@ -1,0 +1,2 @@
+# skype
+skype via docker
