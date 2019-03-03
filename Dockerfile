@@ -3,7 +3,7 @@ FROM debian:stretch-slim
 MAINTAINER https://oda-alexandre.com
 
 # VARIABLES
-ENV USER android
+ENV USER skype
 ENV LANG fr_FR.UTF-8
 
 # INSTALLATION DES PREREQUIS
