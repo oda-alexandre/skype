@@ -1,6 +1,10 @@
 FROM debian:stretch-slim
 
-MAINTAINER https://oda-alexandre.github.io
+MAINTAINER https://oda-alexandre.com
+
+# VARIABLES
+ENV USER android
+ENV LANG fr_FR.UTF-8
 
 # INSTALLATION DES PREREQUIS
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -21,22 +25,21 @@ libcanberra-gtk3-module \
 libgl1-mesa-dri \
 libgl1-mesa-glx \
 mesa-utils \
-xdg-utils
+xdg-utils && \
 
 # SELECTION DE LA LANGUE FRANCAISE
-ENV LANG fr_FR.UTF-8
-RUN echo fr_FR.UTF-8 UTF-8 > /etc/locale.gen && locale-gen
+echo ${LANG} > /etc/locale.gen && locale-gen && \
 
 # AJOUT DU REPOS ET DE LA CLEF GPG
-RUN curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add -
-RUN echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list
+curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add - && \
+echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list && \
 
 # INSTALLATION DE L'APPLICATION
-RUN apt-get update && apt-get install -y \
-skypeforlinux
+apt-get update && apt-get install -y \
+skypeforlinux && \
 
 # NETTOYAGE
-RUN sudo apt-get --purge autoremove -y \
+sudo apt-get --purge autoremove -y \
 curl && \
 apt-get autoclean -y && \
 rm /etc/apt/sources.list && \
@@ -46,15 +49,15 @@ rm -rf /var/lib/apt/lists/*
 COPY ./includes/skype /usr/local/bin/
 
 # AJOUT UTILISATEUR
-RUN useradd -d /home/skype -m skype && \
-passwd -d skype && \
-adduser skype sudo
+useradd -d /home/${USER} -m ${USER} && \
+passwd -d ${USER} && \
+adduser ${USER} sudo
 
 # SELECTION UTILISATEUR
-USER skype
+USER ${USER}
 
 # SELECTION ESPACE DE TRAVAIL
-WORKDIR /home/skype
+WORKDIR /home/${USER}
 
 # COMMANDE AU DEMARRAGE DU CONTENEUR
 ENTRYPOINT skype

@@ -1,25 +1,28 @@
 # SKYPE
 
-![skype](https://raw.githubusercontent.com/oda-alexandre/skype/master/img/logo-skype.png) ![docker](https://raw.githubusercontent.com/oda-alexandre/skype/master/img/logo-docker.png)
+[![dockeri.co](https://dockeri.co/image/alexandreoda/skype)](https://hub.docker.com/r/alexandreoda/skype)
 
 
 ## INDEX
 
-- [Build Docker](#BUILD)
+- [Badges](#BADGES)
 - [Introduction](#INTRODUCTION)
 - [Prerequis](#PREREQUIS)
 - [Installation](#INSTALLATION)
 - [License](#LICENSE)
 
 
-## BUILD DOCKER
+## BADGES
 
-[![skype docker build](https://img.shields.io/docker/build/alexandreoda/skype.svg)](https://hub.docker.com/r/alexandreoda/skype)
+[![version](https://images.microbadger.com/badges/version/alexandreoda/skype.svg)](https://microbadger.com/images/alexandreoda/skype)
+[![size](https://images.microbadger.com/badges/image/alexandreoda/skype.svg)](https://microbadger.com/images/alexandreoda/skype")
+[![build](https://img.shields.io/docker/build/alexandreoda/skype.svg)](https://hub.docker.com/r/alexandreoda/skype)
+[![automated](https://img.shields.io/docker/automated/alexandreoda/skype.svg)](https://hub.docker.com/r/alexandreoda/skype)
 
 
 ## INTRODUCTION
 
-Ce repository contient le fichier Dockerfile de [skype](https://www.skype.com/fr/) pour [docker](https://www.docker.com), mis à jour automatiquement dans le [docker hub](https://hub.docker.com/r/alexandreoda/skype/) public.
+Ce repository contient le fichier Dockerfile de [skype](https://www.skype.com/fr/) pour [docker](https://www.docker.com), mis à jour automatiquement dans le [docker hub](https://hub.docker.com/r/alexandreoda/skype) public.
 
 
 ## PREREQUIS
