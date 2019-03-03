@@ -49,7 +49,7 @@ rm -rf /var/lib/apt/lists/*
 COPY ./includes/skype /usr/local/bin/
 
 # AJOUT UTILISATEUR
-useradd -d /home/${USER} -m ${USER} && \
+RUN useradd -d /home/${USER} -m ${USER} && \
 passwd -d ${USER} && \
 adduser ${USER} sudo
 
