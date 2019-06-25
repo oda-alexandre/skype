@@ -1,6 +1,6 @@
 # SKYPE
 
-[![dockeri.co](https://dockeri.co/image/alexandreoda/skype)](https://hub.docker.com/r/alexandreoda/skype)
+<img src="https://easy-admin.ca/wp-content/uploads/2018/11/teamspeak-1.png" />
 
 
 ## INDEX
@@ -14,10 +14,7 @@
 
 ## BADGES
 
-[![version](https://images.microbadger.com/badges/version/alexandreoda/skype.svg)](https://microbadger.com/images/alexandreoda/skype)
-[![size](https://images.microbadger.com/badges/image/alexandreoda/skype.svg)](https://microbadger.com/images/alexandreoda/skype")
-[![build](https://img.shields.io/docker/build/alexandreoda/skype.svg)](https://hub.docker.com/r/alexandreoda/skype)
-[![automated](https://img.shields.io/docker/automated/alexandreoda/skype.svg)](https://hub.docker.com/r/alexandreoda/skype)
+[![pipeline status](https://gitlab.com/oda-alexandre/skype/badges/master/pipeline.svg)](https://gitlab.com/oda-alexandre/skype/commits/master)
 
 
 ## INTRODUCTION
