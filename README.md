@@ -7,8 +7,8 @@
 
 - [Badges](#BADGES)
 - [Introduction](#INTRODUCTION)
-- [Prerequis](#PREREQUIS)
-- [Installation](#INSTALLATION)
+- [Prerequisites](#PREREQUISITESITES)
+- [Install](#INSTALL)
 - [License](#LICENSE)
 
 
@@ -19,15 +19,25 @@
 
 ## INTRODUCTION
 
-Ce repository contient le fichier Dockerfile de [skype](https://www.skype.com/fr/) pour [docker](https://www.docker.com), mis à jour automatiquement dans le [docker hub](https://hub.docker.com/r/alexandreoda/skype) public.
+Docker image of :
+
+- [skype](https://www.skype.com/fr/)
+
+Continuous integration on :
+
+- [gitlab](https://gitlab.com/oda-alexandre/skype/pipelines)
+
+Automatically updated on :
+
+-[docker hub public](https://hub.docker.com/r/alexandreoda/skype)
 
 
-## PREREQUIS
+## PREREQUISITES
 
-Installer [docker](https://www.docker.com)
+Use [docker](https://www.docker.com)
 
 
-## INSTALLATION
+## INSTALL
 
 ```
 docker run -d --name skype -v ${HOME}:/home/skype -v /tmp/.X11-unix/:/tmp/.X11-unix/ -v /dev/snd:/dev/snd -v /dev/shm:/dev/shm -v /var/run/dbus:/var/run/dbus -v /etc/localtime:/etc/localtime:ro -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native --group-add $(getent group audio | cut -d: -f3) -e DISPLAY alexandreoda/skype
@@ -36,4 +46,4 @@ docker run -d --name skype -v ${HOME}:/home/skype -v /tmp/.X11-unix/:/tmp/.X11-u
 
 ## LICENSE
 
-[![GPLv3+](http://gplv3.fsf.org/gplv3-127x51.png)](https://github.com/oda-alexandre/skype/blob/master/LICENSE)
+[![GPLv3+](http://gplv3.fsf.org/gplv3-127x51.png)](https://gitlab.com/oda-alexandre/skype/blob/master/LICENSE)

@@ -1,12 +1,14 @@
+# IMAGE TO USE
 FROM debian:stretch-slim
 
+# MAINTAINER
 MAINTAINER https://www.oda-alexandre.com/
 
 # VARIABLES
 ENV USER skype
 ENV LANG fr_FR.UTF-8
 
-# INSTALLATION DES PREREQUIS
+# INSTALL PACKAGES
 RUN apt-get update && apt-get install --no-install-recommends -y \
 sudo \
 locales \
@@ -27,18 +29,18 @@ libgl1-mesa-glx \
 mesa-utils \
 xdg-utils && \
 
-# SELECTION DE LA LANGUE FRANCAISE
+# CHANGE LOCALES
 echo ${LANG} > /etc/locale.gen && locale-gen && \
 
-# AJOUT DU REPOS ET DE LA CLEF GPG
+# ADD OF REPOS AND OF THE KEY GPG
 curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add - && \
 echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list && \
 
-# INSTALLATION DE L'APPLICATION
+# INSTALL APP
 apt-get update && apt-get install -y \
 skypeforlinux && \
 
-# NETTOYAGE
+# CLEANING
 sudo apt-get --purge autoremove -y \
 curl && \
 apt-get autoclean -y && \
@@ -46,18 +48,19 @@ rm /etc/apt/sources.list && \
 rm -rf /var/cache/apt/archives/* && \
 rm -rf /var/lib/apt/lists/*
 
+# ADD APP
 COPY ./includes/skype /usr/local/bin/
 
-# AJOUT UTILISATEUR
+# ADD USER
 RUN useradd -d /home/${USER} -m ${USER} && \
 passwd -d ${USER} && \
 adduser ${USER} sudo
 
-# SELECTION UTILISATEUR
+# SELECT USER
 USER ${USER}
 
-# SELECTION ESPACE DE TRAVAIL
+# SELECT WORKING SPACE
 WORKDIR /home/${USER}
 
-# COMMANDE AU DEMARRAGE DU CONTENEUR
-ENTRYPOINT skype
+# START THE CONTAINER
+ENTRYPOINT skype \
