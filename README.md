@@ -1,6 +1,6 @@
 # SKYPE
 
-<img src="https://upload.wikimedia.org/wikipedia/fr/thumb/d/d2/Logo_skype.svg/519px-Logo_skype.svg.png" />
+<img src="https://upload.wikimedia.org/wikipedia/fr/thumb/d/d2/Logo_skype.svg/519px-Logo_skype.svg.png" width="200" height="200"/>
 
 
 ## INDEX
