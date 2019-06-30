@@ -24,7 +24,7 @@ libcanberra-gtk3-module \
 libgl1-mesa-dri \
 libgl1-mesa-glx \
 mesa-utils \
-xdg-utils && \
+xdg-utils
 
 RUN echo -e '\033[36;1m ******* CHANGE LOCALES ******** \033[0m' && \
 echo ${LANG} > /etc/locale.gen && locale-gen
