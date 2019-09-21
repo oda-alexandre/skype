@@ -1,12 +1,12 @@
 FROM debian:stretch-slim
 
-MAINTAINER https://www.oda-alexandre.com/
+LABEL authors https://www.oda-alexandre.com/
 
 ENV USER skype
 ENV LANG fr_FR.UTF-8
 
 RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m' && \
-apt-get update && apt-get install --no-install-recommends -y \
+apt update && apt install --no-install-recommends -y \
 sudo \
 locales \
 apt-transport-https \
@@ -34,7 +34,7 @@ curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add - && \
 echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list
 
 RUN echo -e '\033[36;1m ******* INSTALL APP ******** \033[0m' && \
-apt-get update && apt-get install -y \
+apt update && apt install -y \
 skypeforlinux
 
 RUN echo -e '\033[36;1m ******* CLEANING ******** \033[0m' && \
