@@ -4,4 +4,4 @@ set -e
 
 SKYPE_PATH='/usr/share/skypeforlinux/skypeforlinux'
 
-exec "$SKYPE_PATH" --executed-from="$PWD" --pid="$$" "$@"
+exec "$SKYPE_PATH" --executed-from="${PWD}" --pid="$$" "$@"
