@@ -3,7 +3,7 @@ FROM debian:stretch-slim
 LABEL authors https://www.oda-alexandre.com/
 
 ENV USER skype
-ENV LANG fr_FR.UTF-8
+ENV LOCALES fr_FR.UTF-8
 
 RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m'; \
 apt update && apt install --no-install-recommends -y \
@@ -27,7 +27,7 @@ mesa-utils \
 xdg-utils
 
 RUN echo -e '\033[36;1m ******* CHANGE LOCALES ******** \033[0m'; \
-echo ${LANG} > /etc/locale.gen && locale-gen
+locale-gen ${LOCALES}
 
 RUN echo -e '\033[36;1m ******* ADD SOURCE APP & KEY GPG ******** \033[0m'; \
 curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add -; \
