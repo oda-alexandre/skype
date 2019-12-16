@@ -39,7 +39,7 @@ RUN echo -e '\033[36;1m ******* INSTALL APP ******** \033[0m'; \
   skypeforlinux
 
 RUN echo -e '\033[36;1m ******* ADD APP ******** \033[0m'
-COPY ./includes/skype /usr/local/bin/
+COPY ./skype /usr/local/bin/
 
 RUN echo -e '\033[36;1m ******* ADD USER ******** \033[0m'; \
   useradd -d ${HOME} -m ${USER}; \
