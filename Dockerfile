@@ -3,10 +3,11 @@ FROM debian:stretch-slim
 LABEL authors https://www.oda-alexandre.com/
 
 ENV USER skype
+ENV HOME /home/${USER}
 ENV LOCALES fr_FR.UTF-8
 
 RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m'; \
-  apt update && apt install --no-install-recommends -y \
+  apt-get update && apt-get install --no-install-recommends -y \
   sudo \
   locales \
   apt-transport-https \
@@ -34,22 +35,14 @@ RUN echo -e '\033[36;1m ******* ADD SOURCE APP & KEY GPG ******** \033[0m'; \
   echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list
 
 RUN echo -e '\033[36;1m ******* INSTALL APP ******** \033[0m'; \
-  apt update && apt install -y \
+  apt-get update && apt-get install -y \
   skypeforlinux
-
-RUN echo -e '\033[36;1m ******* CLEANING ******** \033[0m'; \
-  sudo apt-get --purge autoremove -y \
-  curl; \
-  apt-get autoclean -y; \
-  rm /etc/apt/sources.list; \
-  rm -rf /var/cache/apt/archives/*; \
-  rm -rf /var/lib/apt/lists/*
 
 RUN echo -e '\033[36;1m ******* ADD APP ******** \033[0m'
 COPY ./includes/skype /usr/local/bin/
 
 RUN echo -e '\033[36;1m ******* ADD USER ******** \033[0m'; \
-  useradd -d /home/${USER} -m ${USER}; \
+  useradd -d ${HOME} -m ${USER}; \
   passwd -d ${USER}; \
   adduser ${USER} sudo
 
@@ -57,7 +50,15 @@ RUN echo -e '\033[36;1m ******* SELECT USER ******** \033[0m'
 USER ${USER}
 
 RUN echo -e '\033[36;1m ******* SELECT WORKING SPACE ******** \033[0m'
-WORKDIR /home/${USER}
+WORKDIR ${HOME}
+
+RUN echo -e '\033[36;1m ******* CLEANING ******** \033[0m'; \
+  sudo apt-get --purge autoremove -y \
+  curl; \
+  sudo apt-get autoclean -y; \
+  sudo rm /etc/apt/sources.list; \
+  sudo rm -rf /var/cache/apt/archives/*; \
+  sudo rm -rf /var/lib/apt/lists/*
 
 RUN echo -e '\033[36;1m ******* CONTAINER START COMMAND ******** \033[0m'
 ENTRYPOINT skype \
