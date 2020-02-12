@@ -1,6 +1,6 @@
 # SKYPE
 
-<img src="https://upload.wikimedia.org/wikipedia/fr/thumb/d/d2/Logo_skype.svg/519px-Logo_skype.svg.png" width="200" height="200"/>
+<img src="https://assets.gitlab-static.net/uploads/-/system/project/avatar/12904476/0f6568_b9f9ef83261142a6be7e5b5d8caabc90.jpg" width="200" height="200"/>
 
 ## INDEX
 
