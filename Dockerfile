@@ -23,22 +23,17 @@ RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m' && \
   libgl1-mesa-dri \
   libgl1-mesa-glx \
   mesa-utils \
-  xdg-utils \
-  && \
-  echo -e '\033[36;1m ******* ADD SOURCE APP & KEY GPG ******** \033[0m' && \
+  xdg-utils && \
+  rm -rf /var/lib/apt/lists/*
+
+RUN echo -e '\033[36;1m ******* ADD SOURCE APP & KEY GPG ******** \033[0m' && \
   curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add - && \
-  apt-get --purge autoremove -y curl && \
-  echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list \
-  && \
-  echo -e '\033[36;1m ******* INSTALL APP ******** \033[0m' && \
+  echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list && \
+  apt-get --purge autoremove -y curl
+
+RUN echo -e '\033[36;1m ******* INSTALL APP ******** \033[0m' && \
   apt-get update && apt-get install -y \
-  skypeforlinux \
-  && \
-  echo -e '\033[36;1m ******* CLEANING ******** \033[0m' && \
-  apt-get --purge autoremove -y && \
-  apt-get autoclean -y && \
-  rm /etc/apt/sources.list && \
-  rm -rf /var/cache/apt/archives/* && \
+  skypeforlinux && \
   rm -rf /var/lib/apt/lists/*
 
 RUN echo -e '\033[36;1m ******* ADD APP ******** \033[0m'
@@ -54,14 +49,6 @@ USER ${USER}
 
 RUN echo -e '\033[36;1m ******* SELECT WORKING SPACE ******** \033[0m'
 WORKDIR ${HOME}
-
-RUN echo -e '\033[36;1m ******* CLEANING ******** \033[0m' && \
-  sudo apt-get --purge autoremove -y \
-  curl && \
-  sudo apt-get autoclean -y && \
-  sudo rm /etc/apt/sources.list && \
-  sudo rm -rf /var/cache/apt/archives/* && \
-  sudo rm -rf /var/lib/apt/lists/*
 
 RUN echo -e '\033[36;1m ******* CONTAINER START COMMAND ******** \033[0m'
 ENTRYPOINT skype \
