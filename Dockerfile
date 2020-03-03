@@ -4,12 +4,10 @@ LABEL authors https://www.oda-alexandre.com
 
 ENV USER skype
 ENV HOME /home/${USER}
-ENV LOCALES fr_FR.UTF-8
 
 RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m' && \
   apt-get update && apt-get install --no-install-recommends -y \
   sudo \
-  locales \
   apt-transport-https \
   ca-certificates \
   curl \
@@ -26,9 +24,6 @@ RUN echo -e '\033[36;1m ******* INSTALL PACKAGES ******** \033[0m' && \
   libgl1-mesa-glx \
   mesa-utils \
   xdg-utils
-
-RUN echo -e '\033[36;1m ******* CHANGE LOCALES ******** \033[0m' && \
-  locale-gen ${LOCALES}
 
 RUN echo -e '\033[36;1m ******* ADD SOURCE APP & KEY GPG ******** \033[0m' && \
   curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add - && \
