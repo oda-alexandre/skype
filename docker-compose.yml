@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  pidgin:
+    container_name: pidgin
+    image: alexandreoda/pidgin
+    restart: "no"
+    privileged: false
+    volumes:
+      - "${HOME}:/home/pidgin"
+      - "/tmp/.X11-unix/:/tmp/.X11-unix/"
